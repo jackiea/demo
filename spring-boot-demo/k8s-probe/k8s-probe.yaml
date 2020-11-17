@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-probe-demo
+spec:
+  type: NodePort
+  selector:
+    app: k8s-probe-demo
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-probe-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s-probe-demo
+  template:
+    metadata:
+      labels:
+        app: k8s-probe-demo
+    spec:
+      containers:
+        - name: k8s-probe-demo
+          image: youkol/k8s-probe-demo:0.0.1
+          tty: true
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            failureThreshold: 10
+            timeoutSeconds: 10
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 10
+            periodSeconds: 5
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "100m"
+            requests:
+              memory: "128Mi"
+              cpu: "50m"
+          ports:
+            - containerPort: 8080
+
+
