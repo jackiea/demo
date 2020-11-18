@@ -1,0 +1,4 @@
+### Using Jenkins and Java for Continuous Integration
+
+  Refenrence: https://dzone.com/articles/using-jenkins-and-java-for-continuous-integration   
+  中文翻译参考:  [使用Jenkins和Java进行持续集成](https://mp.weixin.qq.com/s?__biz=MzI5ODQ2MzI3NQ==&mid=2247490058&idx=1&sn=a434a0fbd3ba02b1361680fce7eff094&chksm=eca4234edbd3aa58dfc552f66459f4ae1deedf13cf40424327669779ef3285625fa25ad05abb&mpshare=1&scene=1&srcid=&sharer_sharetime=1590413599573&sharer_shareid=79ae7b62144a541c922d64c32c4afdc6&key=ee141ba91bbf96df52781990be3b7830c78782209a46df8999e830caf58e709dacbdab251297cb37bcdb72d78a730e2a2f8c396c7006d596b3f32052c7dd83cb6fd61ee249ad7e19c2dc5561771e61fb&ascene=1&uin=MTU2NDAxNDYyMA%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AemgMMXnLr3s2sEztkNHLlk%3D&pass_ticket=x7BVr4PCH5puDzlZUOaNJ%2B%2BCHFQfVQJtmIVrGMBasomk9DbL8KIau5sEpsLB2G12)
