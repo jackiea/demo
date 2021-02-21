@@ -15,8 +15,10 @@ import javax.script.ScriptException;
 /**
  * 参考教程
  * <ul>
+ * <li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/">官方参考UR</a>
  * <li><a href="https://www.cnblogs.com/top8/p/6207945.html">Java 8 的 Nashorn 脚本引擎教程</a>
  * <li><a href="https://www.cnblogs.com/tian830937/p/4459383.html">java调用JavaScript脚本</a>
+ * <li><a href="https://blog.csdn.net/inthat/article/details/94554957">java 1.8 脚本引擎执行javascript脚本</a>
  * </ul>
  * 
  * @author jackiea
