@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: "dev"
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: dev_vhost
+    listener:
+      direct:
+        acknowledge-mode: auto
+    #   simple:
+    #     acknowledge-mode: auto
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+
+logging:
+  level:
+    '[com.youkol]': debug
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+logging:
+  level:
+    root: info
