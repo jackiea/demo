@@ -26,7 +26,7 @@ public class SpringBootRabbitmqDemoApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        IntStream.range(0, 5).forEach(i -> {
+        IntStream.range(0, 10).forEach(i -> {
             rabbitProducer.sendDemoQueue();
             rabbitProducer.sendFanout();
             rabbitProducer.sendTopicAB();

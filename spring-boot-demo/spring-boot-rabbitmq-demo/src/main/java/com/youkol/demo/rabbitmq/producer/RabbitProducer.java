@@ -88,9 +88,9 @@ public class RabbitProducer {
 
         LocalDateTime time = LocalDateTime.now();
         String message = String.format(DATA_FORMAT, 
-                msgId, RabbitConfig.DEMO_QUEUE_NAME, time.toString(), "Topic-BC");
+                msgId, RabbitConfig.TOPIC_EXCHANGE_NAME, time.toString(), "Topic-BC");
 
-        rabbitTemplate.convertAndSend(RabbitConfig.DEMO_QUEUE_NAME, "topic.routing.m.z", message);
+        rabbitTemplate.convertAndSend(RabbitConfig.TOPIC_EXCHANGE_NAME, "topic.routing.m.z", message);
 
         log.debug("------------ [Topic模式BC]  模拟消息投递/生产者 结束, message: {} ", message);
     }
