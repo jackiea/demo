@@ -3,7 +3,9 @@ package com.youkol.demo.rabbitmq.config;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,5 +42,98 @@ public class RabbitConfig {
         return BindingBuilder.bind(mailQueue())
                 .to(mailExchange())
                 .with(MAIL_ROUTING_KEY_NAME);
+    }
+
+    // ============= 普通队列模式 =============
+
+    public static final String DEMO_QUEUE_NAME = "demo.queue";
+
+    @Bean
+    public Queue demoQueue() {
+        return new Queue(DEMO_QUEUE_NAME);
+    }
+
+    // ============= fanout广播模式 =============
+
+    public static final String FANOUT_QUEUE_A_NAME = "fanout.queue.a";
+    public static final String FANOUT_QUEUE_B_NAME = "fanout.queue.b";
+    public static final String FANOUT_QUEUE_C_NAME = "fanout.queue.c";
+    public static final String FANOUT_EXCHANGE_NAME = "fanout.exchange";
+
+    @Bean
+    public Queue fanoutAQueue() {
+        return new Queue(FANOUT_QUEUE_A_NAME);
+    }
+
+    @Bean
+    public Queue fanoutBQueue() {
+        return new Queue(FANOUT_QUEUE_B_NAME);
+    }
+
+    @Bean
+    public Queue fanoutCQueue() {
+        return new Queue(FANOUT_QUEUE_C_NAME);
+    }
+
+    @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange(FANOUT_EXCHANGE_NAME);
+    }
+
+    @Bean
+    public Binding bindingExchangeWithA() {
+        return BindingBuilder.bind(fanoutAQueue()).to(fanoutExchange());
+    }
+
+    @Bean
+    public Binding bindingExchangeWithB() {
+        return BindingBuilder.bind(fanoutBQueue()).to(fanoutExchange());
+    }
+
+    @Bean
+    public Binding bindingExchangeWithC() {
+        return BindingBuilder.bind(fanoutCQueue()).to(fanoutExchange());
+    }
+
+    // ============= topic广播模式 =============
+
+    public static final String TOPIC_QUEUE_A_NAME = "topic.queue.a";
+    public static final String TOPIC_QUEUE_B_NAME = "topic.queue.b";
+    public static final String TOPIC_QUEUE_C_NAME = "topic.queue.c";
+    public static final String TOPIC_EXCHANGE_NAME = "topic.exchange";
+
+    @Bean
+    public Queue topicAQueue() {
+        return new Queue(TOPIC_QUEUE_A_NAME);
+    }
+
+    @Bean
+    public Queue topicBQueue() {
+        return new Queue(TOPIC_QUEUE_B_NAME);
+    }
+
+    @Bean
+    public Queue topicCQueue() {
+        return new Queue(TOPIC_QUEUE_C_NAME);
+    }
+
+    @Bean
+    public TopicExchange topicExchange() {
+        return new TopicExchange(TOPIC_EXCHANGE_NAME);
+    }
+
+    @Bean
+    public Binding bindingTopicExchangeWithA() {
+        return BindingBuilder.bind(topicAQueue()).to(topicExchange()).with("topic.routing.msg");
+    }
+
+    @Bean
+    public Binding bindingTopicExchangeWithB() {
+        return BindingBuilder.bind(topicBQueue()).to(topicExchange()).with("topic.routing.#");
+    }
+
+    @Bean
+    public Binding bindingTopicExchangeWithC() {
+        return BindingBuilder.bind(topicCQueue()).to(topicExchange()).with("topic.routing.*.z");
     }
 }
