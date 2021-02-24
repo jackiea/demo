@@ -37,8 +37,6 @@ public class SimpleDemo {
     }
 
     /**
-     * For example, output:
-     * 
      * 
      * @throws ScriptException
      * @throws FileNotFoundException
